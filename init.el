@@ -196,3 +196,5 @@
     (set-face-background 'default "unspecified-bg" (selected-frame))))
 
 (add-hook 'window-setup-hook 'on-after-init)
+
+;;(set-face-attribute 'default nil :family "MesloLGS NF")

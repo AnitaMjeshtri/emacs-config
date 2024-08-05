@@ -52,3 +52,120 @@
   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
 
 (package! treemacs-nerd-icons :pin "9876cb478145a0ec4e36f64ff6583f3de7126216")
+
+(unpin! org-roam)
+
+;; When using bibtex-completion via the `biblio` module
+(unpin! bibtex-completion helm-bibtex ivy-bibtex)
+
+(package! evil-workman-mode
+  :recipe (
+           :host github
+           :repo "chrisbarrett/evil-workman-mode"
+           ))
+
+(package! org-roam :recipe (:host github :repo "org-roam/org-roam" ))
+                                        ;(package! org-roam-server
+                                        ;  :recipe (:local-repo "~/Projects/org-roam-server"
+                                        ;           :files ("*")
+                                        ;           :build (:not compile)))
+
+                                        ;(package! org-roam-server)
+(package! ivy-bibtex)
+(package! org-ref)
+(package! org-roam-bibtex)
+(package! org-super-agenda)
+(package! org-gtd)
+(package! org-noter)
+
+(package! rainbow-mode)
+(package! org-transclusion :recipe (:host github :repo "/nobiot/org-transclusion"
+                                        ;:build (:not compile)
+                                          ))
+(package! org-marginalia :recipe (:host github :repo "nobiot/org-marginalia"))
+
+                                        ;(package! nroam)
+(package! org-fragtog)
+(package! org-appear :recipe (:host github :repo "awth13/org-appear"))
+(package! org-noter-pdftools)
+(package! org-pdftools)
+(package! olivetti)
+(package! binder)
+
+(package! focus)
+(package! wc-goal-mode)
+(package! centered-window)
+(package! mixed-pitch)
+(package! wwg :recipe (:host github :repo "ag91/writer-word-goals"))
+(package! powerthesaurus)
+
+(package! tree-sitter)
+(package! tree-sitter-langs)
+
+(package! org-ol-tree
+  :recipe (
+           :host github
+           :repo "Townk/org-ol-tree"
+           ))
+(package! org-sidebar)
+
+                                        ;(package! engrave-faces
+                                        ; :recipe (:host github :repo "tecosaur/engrave-faces"))
+(package! mlscroll)
+
+(package! doom-modeline )
+
+
+(package! erefactor)
+
+(package! svg-tag-mode :recipe (:host github :repo "rougier/svg-tag-mode"))
+;;(package! mu4e-dashboard :recipe (:host github :repo "rougier/mu4e-dashboard"))
+;;(package! mu4e-thread-folding :recipe (:host github :repo "rougier/mu4e-thread-folding"))
+                                        ;(package! org-agenda :recipe (:host github :repo "rougier/mu4e-thread-folding"))
+
+;;(package! dashboard)
+                                        ;(package! pulse-cursor :recipe (:host nil :repo  https://gist.github.com/jasonjckn/0e92c55f1ab0be0947bb613a4706bc33 ))
+(package! smooth-scrolling)
+(package! good-scroll)
+(package! scroll-on-jump)
+(package! iscroll :recipe (:host github :repo "casouri/iscroll"))
+                                        ;(package! yascroll)
+
+(package! ctable)
+(package! deferred)
+(package! s)
+
+(package! info-colors)
+
+(package! org-notifications)
+(package! org-wild-notifier)
+
+                                        ;(package! avy)
+(package! visual-regexp)
+(package! visual-regexp-steroids)
+
+(package! font-lock-studio)
+(package! face-explorer)
+
+(package! suggest)
+(package! unpackaged :recipe (:host github :repo "alphapapa/unpackaged.el"))
+
+(package! all-the-icons-ivy-rich)
+
+                                        ;(package! page-break-mode :recipe (:local-repo "~/Projects/emacs/page-break-mode"))
+
+(package! websocket)
+(package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
+(package! devdocs)
+(package! prettier)
+
+(package! eva
+  :recipe (:host github :repo "meedstrom/eva"
+           :files (:defaults "assets" "renv" "*.R" "*.gnuplot")))
+
+(package! ivy-posframe)
+
+
+(package! nano-theme :recipe (:host github :repo "rougier/nano-theme"))
+
+(package! org-roam-timestamps :recipe (:host github :repo "ThomasFKJorna/org-roam-timestamps"))

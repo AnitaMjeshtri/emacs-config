@@ -5,8 +5,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-;; (setq user-full-name "John Doe"
-;;       user-mail-address "john@doe.com")
+(setq user-full-name "Anita Mjeshtri"
+      user-mail-address "anita.mjeshtri@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -20,8 +20,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -35,11 +35,21 @@
 ;;(setq doom-theme 'doom-challenger-deep)
 
 ;;(setq doom-themes-treemacs-theme 'doom-dracula)
-(setq doom-themes-treemacs-theme 'doom-dracula)
+;;(setq doom-themes-treemacs-theme 'doom-dracula)
 
 ;;(use-package! treemacs-nerd-icons
-;;:after treemacs
-;;:iconfig (treemacs-load-theme "nerd-icons"))
+;;  :after treemacs
+;;  :config
+;;  (treemacs-load-theme "nerd-icons"))
+
+;;(use-package treemacs
+;;  :ensure t)
+
+;;(use-package treemacs-nerd-icons
+;;  :after treemacs
+;;  :ensure t
+;;  :config
+;;  (treemacs-load-theme "nerd-icons"))
 
 
 ;; This determines the style of line numbers in effect. If set to `nil', line

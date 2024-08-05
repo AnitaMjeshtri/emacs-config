@@ -1,5 +1,6 @@
 # Ignore everything
 *
+custom.el
 
 # But not these files...
 !config.el
