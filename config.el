@@ -31,7 +31,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-tokyo-night)
+(setq doom-theme 'nano-dark)
 ;;(setq doom-theme 'doom-challenger-deep)
 
 ;;(setq doom-themes-treemacs-theme 'doom-dracula)
@@ -101,3 +101,5 @@
               ("C-TAB" . 'copilot-accept-completion-by-word)
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
 
+(require 'elpy)
+(elpy-enable)

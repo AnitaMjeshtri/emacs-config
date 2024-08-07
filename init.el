@@ -198,3 +198,13 @@
 (add-hook 'window-setup-hook 'on-after-init)
 
 ;;(set-face-attribute 'default nil :family "MesloLGS NF")
+
+(use-package copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . copilot-accept-completion)
+              ("TAB" . copilot-accept-completion)
+              ("C-TAB" . copilot-accept-completion-by-word)
+              ("C-<tab>" . copilot-accept-completion-by-word)))
+
+(setq python-shell-interpreter "python3") ; or "python" if using Python 2
