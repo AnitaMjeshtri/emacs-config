@@ -193,9 +193,11 @@
 
 (defun on-after-init ()
   (unless (display-graphic-p (selected-frame))
-    (set-face-background 'default "unspecified-bg" (selected-frame))))
+  (set-face-background 'default "unspecified-bg" (selected-frame))))
 
 (add-hook 'window-setup-hook 'on-after-init)
+
+;;(add-to-list 'default-frame-alist '(alpha-background . 70))
 
 ;;(set-face-attribute 'default nil :family "MesloLGS NF")
 

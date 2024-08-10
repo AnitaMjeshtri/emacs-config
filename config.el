@@ -31,7 +31,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'nano-dark)
+(setq doom-theme nil)
 ;;(setq doom-theme 'doom-challenger-deep)
 
 ;;(setq doom-themes-treemacs-theme 'doom-dracula)
@@ -106,3 +106,13 @@
 
 (require 'persp-mode)
 (persp-mode 1)
+
+(defun set-transparency (value)
+  "Set the transparency level of the Emacs frame."
+  (let ((alpha-value (list value value)))
+    (set-frame-parameter (selected-frame) 'alpha alpha-value)
+    (add-to-list 'default-frame-alist `(alpha . ,alpha-value))))
+
+;; Set the transparency to 85%
+(set-transparency 70) ;; Adjust the value as needed (0 is fully transparent, 100 is fully opaque)
+
