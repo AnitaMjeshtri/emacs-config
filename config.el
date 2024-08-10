@@ -103,3 +103,6 @@
 
 (require 'elpy)
 (elpy-enable)
+
+(require 'persp-mode)
+(persp-mode 1)
