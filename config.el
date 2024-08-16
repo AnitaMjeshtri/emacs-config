@@ -116,3 +116,9 @@
 ;; Set the transparency to 85%
 (set-transparency 70) ;; Adjust the value as needed (0 is fully transparent, 100 is fully opaque)
 
+(unless (package-installed-p 'flycheck)
+  (package-refresh-contents)
+  (package-install 'flycheck))
+
+;; Enable Flycheck globally
+(add-hook 'after-init-hook #'global-flycheck-mode)

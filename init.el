@@ -193,7 +193,7 @@
 
 (defun on-after-init ()
   (unless (display-graphic-p (selected-frame))
-  (set-face-background 'default "unspecified-bg" (selected-frame))))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
 
 (add-hook 'window-setup-hook 'on-after-init)
 
@@ -210,3 +210,26 @@
               ("C-<tab>" . copilot-accept-completion-by-word)))
 
 (setq python-shell-interpreter "python3") ; or "python" if using Python 2
+
+(unless (package-installed-p 'flycheck)
+  (package-refresh-contents)
+  (package-install 'flycheck))
+
+;; Enable Flycheck globally
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(when (not (display-graphic-p))
+  (define-key input-decode-map "\e[1;2A" [S-up])
+  (define-key input-decode-map "\e[1;2B" [S-down])
+  (define-key input-decode-map "\e[1;2C" [S-right])
+  (define-key input-decode-map "\e[1;2D" [S-left])
+  (define-key input-decode-map "\e[1;3A" [M-up])
+  (define-key input-decode-map "\e[1;3B" [M-down])
+  (define-key input-decode-map "\e[1;3C" [M-right])
+  (define-key input-decode-map "\e[1;3D" [M-left])
+  (define-key input-decode-map "\e[1;5A" [C-up])
+  (define-key input-decode-map "\e[1;5B" [C-down])
+  (define-key input-decode-map "\e[1;5C" [C-right])
+  (define-key input-decode-map "\e[1;5D" [C-left]))
+
+(xterm-mouse-mode 1)
