@@ -1,4 +1,4 @@
-;;; init.el -*- lexical-binding: t; -*-
+;; init.el -*- lexical-binding: t; -*-
 
 ;; This file controls what Doom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
@@ -211,9 +211,27 @@
 
 (setq python-shell-interpreter "python3") ; or "python" if using Python 2
 
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
+(unless (package-installed-p 'xclip)
+  (package-refresh-contents)
+  (package-install 'xclip))
+
+(require 'xclip)
+(xclip-mode 1)
+
 (unless (package-installed-p 'flycheck)
   (package-refresh-contents)
   (package-install 'flycheck))
+
+(use-package flymake
+  :hook (python-ts-mode . flymake-mode))
+
+(use-package flycheck
+  :ensure t
+  :hook (python-ts-mode . flycheck-mode))
 
 ;; Enable Flycheck globally
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -233,3 +251,123 @@
   (define-key input-decode-map "\e[1;5D" [C-left]))
 
 (xterm-mouse-mode 1)
+
+
+;; Map Command-C to copy the selected region in Emacs
+(global-set-key (kbd "s-c") 'kill-ring-save)
+
+(defun copy-region-to-osx-clipboard (start end)
+  "Copy the selected region to the macOS clipboard."
+  (interactive "r")
+  (shell-command-on-region start end "pbcopy"))
+
+(global-set-key (kbd "s-c") 'copy-region-to-osx-clipboard)
+
+(global-set-key (kbd "s-v") 'yank)
+
+;; This works for copying, but not pasting for some reason
+(setq select-enable-clipboard t)
+
+;; Whatever... it's easy enough to implement that part ourselves
+(setq interprogram-paste-function
+      (lambda ()
+        (shell-command-to-string "pbpaste")))
+
+
+(add-to-list 'treesit-extra-load-path "/Users/anita/tree-sitter-python/lib")
+
+(setq yas-snippet-dirs '("/Users/anita/.config/doom/snippets/"))
+
+(use-package rust-ts-mode
+  :hook ((rust-ts-mode . eglot-ensure)
+         (rust-ts-mode . company-mode))
+  :mode (("\\.rs\\'" . rust-ts-mode))
+  :config
+  (add-to-list 'exec-path "/home/brent/.cargo/bin")
+  (setenv "PATH" (concat (getenv "PATH") ":/home/brent/.cargo/bin")))
+
+(use-package python
+  :bind (:map python-ts-mode-map
+              ("<f5>" . recompile)
+              ("<f6>" . eglot-format))
+  :hook ((python-ts-mode . eglot-ensure)
+         (python-ts-mode . company-mode))
+  :mode (("\\.py\\'" . python-ts-mode)))
+
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0.1
+        company-minimum-prefix-length 1))
+
+(use-package eglot
+  :bind (:map eglot-mode-map
+              ("C-c d" . eldoc)
+              ("C-c a" . eglot-code-actions)
+              ("C-c f" . flymake-show-buffer-diagnostics)
+              ("C-c r" . eglot-rename)))
+
+
+
+(use-package conda
+  :ensure t
+  :config
+  (setq conda-env-home-directory
+        (expand-file-name "~/mambaforge")))
+
+(use-package rust-ts-mode
+  :hook ((rust-ts-mode . eglot-ensure)
+         (rust-ts-mode . company-mode))
+  :mode (("\\.rs\\'" . rust-ts-mode))
+  :config
+  (add-to-list 'exec-path "/home/brent/.cargo/bin")
+  (setenv "PATH" (concat (getenv "PATH") ":/home/brent/.cargo/bin")))
+
+
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0.1
+        company-minimum-prefix-length 1))
+
+;;(desktop-save-mode 1)
+
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
+(use-package highlight-indent-guides
+  :ensure t
+  :hook (python-ts-mode . highlight-indent-guides-mode)
+  :config
+  (set-face-foreground 'default "white")
+  (when (facep 'highlight-indent-guides-character-face)
+    (set-face-foreground 'highlight-indent-guides-character-face "white"))
+  (setq highlight-indent-guides-method 'character))
+
+(setq copilot-max-char 200000)
+
+(use-package python-black
+  :demand t
+  :after python
+  :hook (python-mode . python-black-on-save-mode-enable-dwim))
+
+
+
+(add-hook 'prog-mode-hook 'format-all-mode)
+
+(setq format-all-formatters
+      '(("Shell" (shfmt "-i" "4" "-ci"))))
+
+(use-package format-all
+  :commands format-all-mode
+  :hook (prog-mode . format-all-mode)
+  :config
+  (setq-default format-all-formatters
+                '(("C"     (astyle "--mode=c"))
+                  ("Shell" (shfmt "-i" "4" "-ci")))))
+
+(setq auto-save-default t
+      make-backup-files t)

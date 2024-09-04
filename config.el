@@ -104,6 +104,11 @@
 (require 'elpy)
 (elpy-enable)
 
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+
 (require 'persp-mode)
 (persp-mode 1)
 
@@ -122,3 +127,5 @@
 
 ;; Enable Flycheck globally
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+(setq copilot-max-char 200000)  ;; Adjust the number as needed
